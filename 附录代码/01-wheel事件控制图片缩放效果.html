@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .c1 {
+      display: flex;
+      margin: 300px auto;
+      justify-content: center;
+      align-items: center;
+      width: 600px;
+      height: 600px;
+      border: 1px solid red;
+    }
+    .c1 > img {
+      width: 500px;
+      transition: all .3s;
+      transform: scale(100%);
+    }
+  </style>
+</head>
+<body>
+<div class="c1">
+  <img src="../img/1.png" alt="">
+</div>
+</body>
+<script>
+  const c1 = document.querySelector('.c1');
+  const img = document.querySelector('img');
+  let scale = 1
+  c1.addEventListener('wheel',function (e) {
+    console.log(e.cancelable,e.deltaY)
+    // 判断当前是否能阻止滚动默认事件
+    e.cancelable && (e.returnValue = false)
+    // 调整缩放比例
+    scale += 0.01 * e.deltaY
+    scale = Math.min(Math.max(0.125,scale), 3)
+    // 调整对应样式
+    img.style.transform = `scale(${scale})`
+  })
+</script>
+</html>

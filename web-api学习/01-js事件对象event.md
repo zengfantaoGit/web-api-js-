@@ -18,8 +18,8 @@
 * 最后还可以通过自定义事件来进行触发。
 
 下面是一次触发mouseup事件后，浏览器生成的event对象
-```js
-MouseEvent {isTrusted: true, screenX: 312, screenY: 533, clientX: 469, clientY: 646, …}
+`
+MouseEvent = {isTrusted: true, screenX: 312, screenY: 533, clientX: 469, clientY: 646,
 altKey: false
 bubbles: true // 判断事件是否会事件冒泡时触发事件
 button: 0
@@ -62,7 +62,7 @@ which: 1
 x: 469
 y: 646
 __proto__: MouseEvent
-```
+`
 
 ### 二，event事件对象常用属性
 
@@ -183,7 +183,22 @@ const body = document.body
 该方法用来阻止当前事件在捕获阶段和冒泡阶段中的传播，如果点击了子元素，
 但是在子元素中阻止了事件的冒泡，那么父元素对应的事件不会被触发；
 如果点击了子元素，但是在父元素中阻止了事件的捕获传播，那么子元素对应的事件将不会被触发。
-与`event.cancelBubble`作用相同
+与`event.cancelBubble`作用相同。
+
+
+### 五。总结
+
+#### 1. 阻止事件冒泡的方式
+* e.stopPropagation()
+* e.cancelBubble = true （未来可能废弃）
+* stopImmediatePropagation方法：阻止事件冒泡并且阻止该元素上同事件类型的监听器被触发
+
+### 2. 阻止默认事件触发
+1. e.preventDefault()
+2. e.returnValue = false
+3. return false, 直接结束对应操作
+
+
 
 
 
